@@ -15,7 +15,7 @@ jobs:
             then
              echo "DOCKER_TRIGGER_TOKEN not set";
             else
-             curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST https://registry.hub.docker.com/u/ericdowell/laravel-circleci/trigger/$DOCKER_TRIGGER_TOKEN/
+             curl -X POST https://cloud.docker.com/api/build/v1/source/$DOCKER_CLOUD_SOURCE/trigger/$DOCKER_CLOUD_TRIGGER/call/
             fi
           fi
 workflows:
@@ -23,7 +23,7 @@ workflows:
   commit:
     jobs:
       - build
-  nightly-push:
+  nightly-build:
     triggers:
       - schedule:
           cron: "0 0 * * *"
