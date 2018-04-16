@@ -26,4 +26,3 @@ jobs:
 
 ## Build Locally
 Run: `docker build -t ericdowell/laravel-circleci .`
-
