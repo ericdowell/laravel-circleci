@@ -10,11 +10,13 @@ jobs:
      - run:
         name: Trigger Docker Hub Build
         command: |
-          if [ -z ${DOCKER_TRIGGER_TOKEN+x} ]
-          then
-           echo "DOCKER_TRIGGER_TOKEN not set";
-          else
-           curl -X POST https://registry.hub.docker.com/u/ericdowell/laravel-circleci/trigger/$DOCKER_TRIGGER_TOKEN/
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ -z ${DOCKER_TRIGGER_TOKEN+x} ]
+            then
+             echo "DOCKER_TRIGGER_TOKEN not set";
+            else
+             curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST https://registry.hub.docker.com/u/ericdowell/laravel-circleci/trigger/$DOCKER_TRIGGER_TOKEN/
+            fi
           fi
 workflows:
   version: 2
