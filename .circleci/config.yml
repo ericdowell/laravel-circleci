@@ -7,6 +7,15 @@ jobs:
      - run:
         name: Test building the docker image
         command: docker build -t ericdowell/laravel-circleci:latest .
+     - run:
+        name: Trigger Docker Hub Build
+        command: |
+          if [ -z ${DOCKER_TRIGGER_TOKEN+x} ]
+          then
+           echo "DOCKER_TRIGGER_TOKEN not set";
+          else
+           curl -X POST https://registry.hub.docker.com/u/ericdowell/laravel-circleci/trigger/$DOCKER_TRIGGER_TOKEN/
+          fi
 workflows:
   version: 2
   commit:
