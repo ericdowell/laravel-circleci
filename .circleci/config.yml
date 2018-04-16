@@ -11,9 +11,9 @@ jobs:
         name: Trigger Docker Hub Build
         command: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            if [ -z ${DOCKER_TRIGGER_TOKEN+x} ]
+            if [ -z ${DOCKER_CLOUD_TRIGGER+x} ]
             then
-             echo "DOCKER_TRIGGER_TOKEN not set";
+             echo "DOCKER_CLOUD_TRIGGER not set";
             else
              curl -X POST https://cloud.docker.com/api/build/v1/source/$DOCKER_CLOUD_SOURCE/trigger/$DOCKER_CLOUD_TRIGGER/call/
             fi
