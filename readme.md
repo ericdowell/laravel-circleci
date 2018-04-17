@@ -1,4 +1,6 @@
 # Laravel CircleCI 2.0 Docker Image
+[![CircleCI](https://circleci.com/gh/ericdowell/laravel-circleci.svg?style=svg)](https://circleci.com/gh/ericdowell/laravel-circleci)
+
 Docker container for running tests/build in CircleCI 2.0, 
 meant for the PHP Framework [Laravel](https://laravel.com/).
 
@@ -8,8 +10,7 @@ This is built nightly and pushed to the `latest` tag.
 
 ## Permissions Issue
 Currently there's a permission issue that has to be resolved,
-to fix the issue in your laravel build by adding 
-this step to your `.circleci/config.yml` file:
+to fix the issue in your laravel build add this step to your `.circleci/config.yml` file:
 
 ```yml
 version: 2
