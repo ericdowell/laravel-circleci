@@ -8,6 +8,12 @@ jobs:
         name: Test building the docker image
         command: docker build -t ericdowell/laravel-circleci:latest .
      - run:
+        name: Output Nginx Version
+        command: nginx -v
+     - run:
+        name: Output PHP Version
+        command: php -v
+     - run:
         name: Trigger Docker Hub Build
         command: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
