@@ -19,13 +19,13 @@ jobs:
      - run:
         name: Output Build Versions
         command: |
-          echo 'supervisord' && docker exec -ti $DOCKER_CREATE_NAME supervisord -v
-          echo 'nginx' && docker exec -ti $DOCKER_CREATE_NAME nginx -v
-          echo 'php' && docker exec -ti $DOCKER_CREATE_NAME php -v
-          echo 'php extensions' && docker exec -ti $DOCKER_CREATE_NAME ls /usr/local/etc/php/conf.d/
-          echo 'yarn' && docker exec -ti $DOCKER_CREATE_NAME yarn -v
-          echo 'node' && docker exec -ti $DOCKER_CREATE_NAME node -v
-          echo 'npm' && docker exec -ti $DOCKER_CREATE_NAME npm -v
+          echo 'supervisord:' && docker exec -ti $DOCKER_CREATE_NAME supervisord -v
+          docker exec -ti $DOCKER_CREATE_NAME nginx -v
+          docker exec -ti $DOCKER_CREATE_NAME php -v
+          echo 'php extensions:' && docker exec -ti $DOCKER_CREATE_NAME ls /usr/local/etc/php/conf.d/
+          echo 'yarn:' && docker exec -ti $DOCKER_CREATE_NAME yarn -v
+          echo 'node:' && docker exec -ti $DOCKER_CREATE_NAME node -v
+          echo 'npm:' && docker exec -ti $DOCKER_CREATE_NAME npm -v
      - run:
         name: Remove Container
         command: docker rm -f $DOCKER_CREATE_NAME
