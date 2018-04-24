@@ -2,26 +2,32 @@ version: 2
 jobs:
  build:
    machine: true
+   environment:
+    - DOCKER_CREATE_NAME=laravel_circleci
+    - DOCKER_IMG_NAME=ericdowell/laravel-circleci
    steps:
      - checkout
      - run:
         name: Test building the docker image
-        command: docker build -t ericdowell/laravel-circleci:latest .
+        command: docker build -t $DOCKER_IMG_NAME:latest .
      - run:
-        name: Output Nginx Version
-        command: nginx -v
+        name: Output Build Versions
+        command: |
+          docker create --name $DOCKER_CREATE_NAME ericdowell/laravel-circleci:latest
+          docker start $DOCKER_CREATE_NAME
+          docker exec -ti $DOCKER_CREATE_NAME nginx -v
+          docker exec -ti $DOCKER_CREATE_NAME php -v
+          docker rm -f $DOCKER_CREATE_NAME
      - run:
-        name: Output PHP Version
-        command: php -v
-     - run:
-        name: Trigger Docker Hub Build
+        name: Push Build to Docker Hub
         command: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            if [ -z ${DOCKER_CLOUD_TRIGGER+x} ]
+            if [ -z ${DOCKER_PASS+x} ]
             then
-             echo "DOCKER_CLOUD_TRIGGER not set";
+             echo "DOCKER_PASS not set";
             else
-             curl -X POST https://cloud.docker.com/api/build/v1/source/$DOCKER_CLOUD_SOURCE/trigger/$DOCKER_CLOUD_TRIGGER/call/
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push $DOCKER_IMG_NAME:latest
             fi
           fi
 workflows:
