@@ -1,5 +1,7 @@
 # Laravel CircleCI 2.0 Docker Image
 [![CircleCI](https://circleci.com/gh/ericdowell/laravel-circleci.svg?style=svg)](https://circleci.com/gh/ericdowell/laravel-circleci)
+![Docker Pulls](https://img.shields.io/docker/pulls/ericdowell/laravel-circleci.svg?style=flat-square)
+
 
 Docker container for running tests/build in CircleCI 2.0, 
 meant for the PHP Framework [Laravel](https://laravel.com/).
