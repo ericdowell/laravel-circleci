@@ -15,8 +15,10 @@ RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF
 RUN sudo apt-get update && sudo apt-get install -y nginx supervisor
 
 ## Install node and php extensions
-RUN sudo apt-get install -y autoconf libicu-dev libxml2-dev libpng-dev libjpeg-dev zlib1g-dev \
+RUN sudo apt-get install -y autoconf libmemcached-dev libicu-dev libxml2-dev libpng-dev libjpeg-dev zlib1g-dev \
                             mysql-client xvfb chromium \
+    && sudo pecl install memcached \
+    && sudo docker-php-ext-enable memcached \
     && sudo docker-php-ext-configure intl \
     && sudo docker-php-ext-install intl \
     && sudo docker-php-ext-install zip \
