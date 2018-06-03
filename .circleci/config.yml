@@ -12,7 +12,7 @@ jobs:
         command: docker build -t $DOCKER_IMG_NAME:latest .
      - run:
         name: Create Container
-        command: docker create --name $DOCKER_CREATE_NAME ericdowell/laravel-circleci:latest
+        command: docker create --name $DOCKER_CREATE_NAME $DOCKER_IMG_NAME:latest
      - run:
         name: Start Container
         command: docker start $DOCKER_CREATE_NAME
