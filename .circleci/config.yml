@@ -36,12 +36,15 @@ jobs:
             if [ -z ${DOCKER_PASS+x} ]
             then
              echo "DOCKER_PASS not set.";
+             exit 1;
             else
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push $DOCKER_IMG_NAME:latest
+              docker login -u $DOCKER_USER -p $DOCKER_PASS;
+              docker push $DOCKER_IMG_NAME:latest;
+              exit 0;
             fi
           else
-              echo "Not the right branch to push to docker hub."
+              echo "Not the right branch to push to docker hub.";
+              exit 0;
           fi
 workflows:
   version: 2
