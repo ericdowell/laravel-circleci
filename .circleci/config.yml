@@ -23,6 +23,7 @@ jobs:
           docker exec -ti $DOCKER_CREATE_NAME nginx -v
           docker exec -ti $DOCKER_CREATE_NAME php -v
           echo 'php extensions:' && docker exec -ti $DOCKER_CREATE_NAME ls /usr/local/etc/php/conf.d/
+          docker exec -ti $DOCKER_CREATE_NAME php -m
           echo 'yarn:' && docker exec -ti $DOCKER_CREATE_NAME yarn -v
           echo 'node:' && docker exec -ti $DOCKER_CREATE_NAME node -v
           echo 'npm:' && docker exec -ti $DOCKER_CREATE_NAME npm -v
