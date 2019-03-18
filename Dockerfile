@@ -26,7 +26,7 @@ RUN sudo apt-get install -y autoconf libmemcached-dev libicu-dev libxml2-dev \
     && sudo docker-php-ext-configure intl \
     && sudo docker-php-ext-install intl \
     && sudo docker-php-ext-install zip \
-    && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+    && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && sudo docker-php-ext-install gd \
     && sudo docker-php-ext-install soap \
     && sudo docker-php-ext-install mysqli \
