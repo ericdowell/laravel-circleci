@@ -1,4 +1,4 @@
-FROM circleci/php:7.2-fpm-stretch-node-browsers
+FROM circleci/php:7.3-fpm-buster-node-browsers-legacy
 
 ## Upgrade all dependencies and global composer version and set defaults for php and add needed nginx sources
 RUN sudo apt-get upgrade -y && sudo composer self-update \
@@ -6,8 +6,8 @@ RUN sudo apt-get upgrade -y && sudo composer self-update \
     && sudo mkdir -p /home/cirlceci/project && sudo chmod 770 /home/cirlceci/project \
     && echo "date.timezone = UTC" | sudo tee /usr/local/etc/php/conf.d/date.ini \
     && echo "memory_limit = -1" | sudo tee /usr/local/etc/php/conf.d/memory.ini \
-    && echo "deb http://nginx.org/packages/debian/ stretch nginx" | sudo tee --append /etc/apt/sources.list \
-    && echo "deb-src http://nginx.org/packages/debian/ stretch nginx" | sudo tee --append /etc/apt/sources.list
+    && echo "deb http://nginx.org/packages/debian/ buster nginx" | sudo tee --append /etc/apt/sources.list \
+    && echo "deb-src http://nginx.org/packages/debian/ buster nginx" | sudo tee --append /etc/apt/sources.list
 
 ## Add nginx key signing for apt
 RUN sudo wget https://nginx.org/keys/nginx_signing.key \
@@ -20,9 +20,11 @@ RUN sudo apt-get update && sudo apt-get install -y nginx supervisor
 RUN sudo apt-get install -y autoconf libmemcached-dev libicu-dev libxml2-dev \
                             libfreetype6-dev libjpeg62-turbo-dev \
                             libgd-dev libpng-dev libjpeg-dev zlib1g-dev \
-                            mysql-client xvfb chromium \
+                            default-mysql-client xvfb chromium \
     && sudo pecl install memcached \
     && sudo docker-php-ext-enable memcached \
+    && sudo pecl install redis \
+    && sudo docker-php-ext-enable redis \
     && sudo docker-php-ext-configure intl \
     && sudo docker-php-ext-install intl \
     && sudo docker-php-ext-install zip \

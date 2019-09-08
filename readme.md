@@ -6,7 +6,7 @@
 Docker container for running tests/build in CircleCI 2.0, 
 meant for the PHP Framework [Laravel](https://laravel.com/).
 
-This repo builds off of the `circleci/php:7.2-fpm-stretch-node-browsers` image.
+This repo builds off of the `circleci/php:7.3-fpm-buster-node-browsers-legacy` image.
 
 This is built nightly and pushed to the `latest` tag.
 
