@@ -18,7 +18,7 @@ RUN sudo apt-get update && sudo apt-get install -y nginx supervisor
 
 ## Install node and php extensions
 RUN sudo apt-get install -y autoconf libmemcached-dev libicu-dev libxml2-dev \
-                            libfreetype6-dev libjpeg62-turbo-dev \
+                            libfreetype6-dev libjpeg62-turbo-dev exiftool \
                             libgd-dev libpng-dev libjpeg-dev zlib1g-dev \
                             default-mysql-client xvfb chromium \
     && sudo pecl install memcached \
@@ -27,6 +27,9 @@ RUN sudo apt-get install -y autoconf libmemcached-dev libicu-dev libxml2-dev \
     && sudo docker-php-ext-enable redis \
     && sudo docker-php-ext-configure intl \
     && sudo docker-php-ext-install intl \
+    && sudo docker-php-ext-configure exif \
+    && sudo docker-php-ext-install exif \
+    && sudo docker-php-ext-enable exif \
     && sudo docker-php-ext-install zip \
     && sudo docker-php-ext-install pcntl \
     && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
