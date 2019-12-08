@@ -1,4 +1,4 @@
-FROM circleci/php:7.3-fpm-buster-node-browsers-legacy
+FROM circleci/php:7.4-fpm-buster-node-browsers-legacy
 
 ## Upgrade all dependencies and global composer version and set defaults for php and add needed nginx sources
 RUN sudo apt-get upgrade -y && sudo composer self-update \
