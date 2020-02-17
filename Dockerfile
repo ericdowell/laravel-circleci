@@ -1,4 +1,4 @@
-FROM circleci/php:7.3-fpm-buster-node-browsers-legacy
+FROM circleci/php:7.4-fpm-buster-node-browsers-legacy
 
 ## Upgrade all dependencies and global composer version and set defaults for php and add needed nginx sources
 RUN sudo apt-get upgrade -y && sudo composer self-update \
@@ -33,7 +33,7 @@ RUN sudo apt-get install -y autoconf libmemcached-dev libicu-dev libxml2-dev \
     && sudo docker-php-ext-install zip \
     && sudo docker-php-ext-install pcntl \
     && sudo docker-php-ext-install bcmath \
-    && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && sudo docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && sudo docker-php-ext-install gd \
     && sudo docker-php-ext-install soap \
     && sudo docker-php-ext-install mysqli \
