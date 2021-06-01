@@ -2,7 +2,7 @@ FROM circleci/php:7.4-fpm-buster-node-browsers-legacy
 
 ## Upgrade all dependencies and global composer version and set defaults for php and add needed nginx sources
 RUN sudo apt-get upgrade -y && sudo composer self-update \
-    && sudo npm i -g npm \
+    && sudo npm i -g npm@6 \
     && sudo mkdir -p /home/cirlceci/project && sudo chmod 770 /home/cirlceci/project \
     && echo "date.timezone = UTC" | sudo tee /usr/local/etc/php/conf.d/date.ini \
     && echo "memory_limit = -1" | sudo tee /usr/local/etc/php/conf.d/memory.ini \
