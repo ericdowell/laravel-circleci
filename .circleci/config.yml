@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
  build:
    machine: true
@@ -50,15 +50,5 @@ jobs:
 workflows:
   version: 2
   commit:
-    jobs:
-      - build
-  # nightly-build:
-  #   triggers:
-  #     - schedule:
-  #         cron: "0 0 * * *"
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
     jobs:
       - build
