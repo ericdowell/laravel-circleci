@@ -52,13 +52,13 @@ workflows:
   commit:
     jobs:
       - build
-  nightly-build:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
+  # nightly-build:
+  #   triggers:
+  #     - schedule:
+  #         cron: "0 0 * * *"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
     jobs:
       - build
